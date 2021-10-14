@@ -6,8 +6,11 @@
     </head>
     <body style="background-color: black;">
         <div class="button_click" style="background-color:#FFFFFF;width: 100px;height: 100px;">点击这个</div>
+        <div class="content" style="background-color: #FFFFFF;">这个是内容：</div>
     </body>
     <script type="text/javascript" src="jquery-3.5.1.min.js"></script>
+    <script src="modal.js"></script>
+
     <script>
         
         function modal_confirm(option){
@@ -68,6 +71,18 @@
 
                 ]
             });
+        })
+        var content = document.getElementsByClassName('content')[0];
+            $.ajax({
+            type:"get",
+            url:"user.json",
+            dataType:"json",
+            success:function(response){
+                var html='';
+                for(x of response){
+                    content.innerHTML+=`name:${x['name']} age:${x['age']}`;
+                }
+            }
         })
     </script>
 </html>
